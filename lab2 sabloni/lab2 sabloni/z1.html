@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <meta charset="UTF-8">
+    <title>zadaca1</title>
+</head>
+<body>
+<style>
+    body {
+        background: black;
+    }
+
+    h1 {
+        font-size: 40px;
+        color: #FFF;
+        text-align: center;
+    }
+
+    .sodrzina {
+        max-width: 450px;
+        margin: 0 auto;
+    }
+
+    .tabs {
+        padding-bottom: 1rem;
+    }
+
+    .tab {
+        border: 1px solid transparent;
+        display: inline-block;
+        text-decoration: none;
+        padding: 8px 16px;
+        color: #FFF;
+        background: #43406e;
+        transition: all 0.7s;
+    }
+
+    .tab.active {
+        color: #FFF;
+        background: yellow;
+        border: 1px solid #B3B1C4;
+        position: relative;
+    }
+
+    .content {
+        background: lightskyblue;
+        display: none; /*bitnoo*/
+        padding: 1.5rem;
+        color: black;
+    }
+
+    .show {
+        display: block;
+    }
+</style>
+
+
+<h1>Custom Tab</h1>
+<div class="sodrzina">
+    <nav class="tabs">
+        <a class="tab active" href="#1">Open Start</a>
+        <a class="tab" href="#2">Connect</a>
+        <a class="tab" href="#3">Pin apps</a>
+    </nav>
+
+    <div id="1" class="content show">
+        <div>
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+            industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
+            scrambled it to make a type specimen book.
+            <h1>Open Start</h1>
+        </div>
+    </div>
+
+    <div id="2" class="content">
+        <div>
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+            industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
+            scrambled it to make a type specimen book.
+            <h1>Connect</h1>
+        </div>
+    </div>
+
+    <div id="3" class="content">
+        <div>
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+            industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
+            scrambled it to make a type specimen book.
+            <h1>Pin apps</h1>
+        </div>
+    </div>
+</div>
+<script>
+
+    $(".tabs").on("click", ".tab", function (e) {
+        e.preventDefault();
+        $(".tab").removeClass("active");
+        $(".content").removeClass("show");
+        $(this).addClass("active");
+        $($(this).attr("href")).addClass("show");
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <meta charset="UTF-8">
+    <title>zadaca3</title>
+</head>
+<body>
+<style>
+    h3 {
+        width: 50%;
+        margin: 20%;
+    }
+
+    #userFeedback {
+        float: right;
+        margin-right: 100px;
+        margin-top: -50px;
+    }
+
+    /*Adjustments for the various parts of modal*/
+    #modalButtons {
+        float: right;
+        margin-right: 20px;
+    }
+
+     #feedback {
+        width: 340px;
+        margin-left: 20px;
+    }
+
+    /* for partially visible background around the modal display is set to block when 'Feedback is clicked'*/
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        padding-top: 100px;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    /*default class on modal div*/
+    .modal-content {
+        position: relative;
+        padding: 10px;
+        width: 400px;
+        margin: auto;
+        background-color:seagreen;
+        border: 1px solid #777;
+    }
+
+
+    /*clicking  'add'*/
+    .visible {
+        display: block;
+    }
+
+
+</style>
+
+
+<!-- modal panel koristeme-->
+<h3>Притиснете на 'Add Book' за да ја додадете вашата омилена книга.</h3>
+
+<button id="userFeedback">&nbsp; Add Book &nbsp;</button>
+<!--od koga ke se klikne-->
+<div id="feedbackSection" class="modal">
+    <div class="modal-content">
+        <form action="">
+            <br/>
+            <label class="sr-only" for="feedback">Наслов: </label>
+            <textarea name="feedback" id="feedback" placeholder="Harry Potter ..." autofocus></textarea>
+
+            <label class="sr-only" for="feedback">Автор: </label>
+            <textarea name="feedback" id="feedback" placeholder="J.K.Rowling ..." autofocus></textarea>
+
+
+            <label class="sr-only" for="feedback">Коментар : </label>
+            <textarea name="feedback" id="feedback" placeholder="vash komenatar ..." autofocus></textarea>
+            <br/><br/>
+            <span id="modalButtons">
+        <button id="closeOnly" > Add</button>
+        </span>
+        </form>
+    </div>
+</div>
+<script>
+
+    $(document).ready(function()
+    {
+
+        //click event='add/close'
+        $('#closeOnly').click(function()
+        {
+            $('#feedbackSection').removeClass('visible');
+        });
+        //--- click events on 'Feedback' button on the page = bring up the modal
+        function takefeedback()   //default click event
+        {
+            $('#feedbackSection').addClass('visible');
+        }
+        function sentfeedback()     //click event attached when feedback succesfully submitted
+        {
+            $('#feedbackSection').addClass('visible');
+            console.log('changing feedback section');
+            $('form').prepend('<br /><span style="color:red; margin-left:20px;">'+
+                'You have already submitted a rating</span><br />');
+            $('#closeSend').prop('disabled', true);
+            $('#email').prop('disabled', true);
+            $('#feedback').prop('disabled', true);
+        }
+        $('#userFeedback').on('click', takefeedback);
+
+        //click event on 'close' button on the modal = simply close the modal
+        $('#closeOnly').click(function()
+        {
+            $('#feedbackSection').removeClass('visible');
+        });
+        // when 'Done' button on modal is clicked = close the modal and send the data(actually data isn't going anywhere its ficticious)
+        $('#closeSend').click(function()
+        {
+            email    =  $('#email').val();
+            feedback =  $('#feedback').val();
+            //validating the email field
+            var atpos  = email.indexOf("@");
+            var dotpos = email.lastIndexOf(".");
+
+
+
+
+        });     // end of code for 'Done' button
+    });
+</script>
+
+</body>
+</html>
