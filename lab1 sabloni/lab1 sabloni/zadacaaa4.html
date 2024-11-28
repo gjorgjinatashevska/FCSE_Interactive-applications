@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Zadaca4</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
+
+  <style>
+    .eden{
+      font-weight:bold;
+      color: #0000FF;
+    }
+  </style>
+
+
+
+  <script>
+    $(document).ready(function (){
+      $("li").addClass("eden")
+      $("#click").click(function () {
+        $("ol>li").removeClass("eden");
+      })
+    })
+
+  </script>
+</head>
+<body>
+<ul id="list">
+  <li>Logo-Photo</li>
+  <ol type="I">
+    <li>url - thumbnail: www.sth.com/GAVassdfSJFKBAFsadfdsg</li>
+    <li>url-icon: www.sth.com/GAVassdfSJFKBAFsadfdsg</li>
+    <li>url-default: www.sth.com/GAVassdfSJFKBAFsadfdsg</li>
+  </ol>
+  <li>Header-Photo</li>
+  <ol type="I">
+    <li>url - thumbnail: www.sth.com/GAVassdfSJFKBAFsadfdsg</li>
+    <li>url-icon: www.sth.com/GAVassdfSJFKBAFsadfdsg</li>
+    <li>url-default: www.sth.com/GAVassdfSJFKBAFsadfdsg</li>
+  </ol>
+  <li>Footer-Photo</li>
+  <ol type="I">
+    <li>url - thumbnail: www.sth.com/GAVassdfSJFKBAFsadfdsg</li>
+    <li>url-icon: www.sth.com/GAVassdfSJFKBAFsadfdsg</li>
+    <li>url-default: www.sth.com/GAVassdfSJFKBAFsadfdsg</li>
+  </ol>
+  <li>Main-Photo</li>
+  <ol type="I">
+    <li>url - thumbnail: www.sth.com/GAVassdfSJFKBAFsadfdsg</li>
+    <li>ur-icon: www.sth.com/GAVassdfSJFKBAFsadfdsg</li>
+    <li>url-default: www.sth.com/GAVassdfSJFKBAFsadfdsg</li>
+  </ol>
+</ul>
+<button id="click">Change</button>
+</body>
+</html>

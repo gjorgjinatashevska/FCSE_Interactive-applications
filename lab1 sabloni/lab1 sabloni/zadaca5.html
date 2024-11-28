@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+    </script>
+</head>
+
+<body>
+<center>
+
+<div>
+
+    <h3>Големина на фонт</h3>
+
+    <br>
+
+    <button>Смени големина на фонт</button>
+
+    <h2>How to connect to the Internet</h2>
+<p id="content">While connecting to the internet might seem like a simple task, it can be complicated if you’re just getting started! We’ll cover three types of internet connections — Wi-Fi, ethernet, and dial-up. The process for connecting to a network varies depending on the type of connection and your device. This wikiHow will show you how to connect to the internet on Windows, Mac, Android, and iPhone.</p>
+</div>
+</center>
+<style>
+    div{
+        background-color: lightskyblue;
+        height: 400px;
+        width: 651px;
+    }
+</style>
+<script>
+    $(document).ready(function() {
+        $('button').click(function() {
+            $("#content").css("fontSize", "25px");
+        });
+    });
+</script>
+</body>
+</html>
