@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vtora</title>
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"/>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+</head>
+<body>
+<!--html-->
+<div id="input-boxes">
+    <label  class="labels">Name:</label>
+    <input id="name" class="inputs" type="text" placeholder="Name...">
+    <span class="if-not-valid">Insert a name</span>
+
+    <br>
+
+    <label f class="labels">Surname:</label>
+    <input id="surname" class="inputs" type="text" placeholder="Surname...">
+    <span class="if-not-valid">Insert a surname</span>
+
+    <br>
+
+    <label  class="labels">Password:</label>
+    <input id="password" class="inputs" type="password" placeholder="Password">
+    <span class="if-not-valid">Insert a password</span>
+
+    <br>
+
+    <label class="labels">DateOfBirth:</label>
+    <input id="date-of-birth" class="inputs" type="text" placeholder="Date Of Birth">
+    <span class="if-not-valid">Select a date</span>
+</div>
+
+<br><br>
+
+<span>Select your hobbies:</span>
+<br><br>
+
+<ul id="selectable-list">
+    <li class="item ui-widget-content">Gaming</li>
+    <li class="item ui-widget-content">Sports</li>
+    <li class="item ui-widget-content">Watching TV</li>
+    <li class="item ui-widget-content">Sleeping</li>
+    <li class="item ui-widget-content">Hiking</li>
+    <li class="item ui-widget-content">Skiing</li>
+    <li class="item ui-widget-content">Dancing</li>
+</ul>
+
+<br><br>
+
+<input id="add-info" type="button" value="Add my info" name="addInfo">
+
+
+<div id="dialog">
+    <span>Name:</span><span id="nameHere"></span><br><br>
+    <span>Surname:</span><span id="surnameHere"></span><br><br>
+    <span>Password:</span><span id="passwordHere"></span><br><br>
+    <span>DateOfBirth:</span><span id="date-of-birth-here"></span><br><br>
+    <span>Hobbies:</span><span id="hobbiesHere"></span><br><br>
+</div>
+
+<style type="text/css">
+
+    /*za ime: |_______|*/
+    .labels {
+        display: inline-block;
+        width: 90px;
+    }
+
+
+    #selectable-list .ui-selected {
+        background: #F39814;
+        color: white;
+    }
+    /*za gaming,sport tia da se u kutija*/
+    .item {
+        padding: 8px;
+        margin: 3px;
+        border: 3px solid;
+        width: 250px;
+    }
+
+
+    .if-not-valid {
+        color: red;
+    }
+
+    .not-valid-input {
+        border: 2px solid red;
+    }
+</style>
+
+
+<script type="text/javascript">
+    /*za da se otv ptozor za rez mora :*/
+    $("#dialog").dialog({
+        modal: false,
+        autoOpen: false,
+        title: "User Info",
+    });
+/*bez voa nema das se pojave crvenoto za nevaliden input*/
+    function validateInputs() {
+        var name = $("#name").val();
+        var surname = $("#surname").val();
+        var password = $("#password").val();
+        var dateOfBirth = $("#date-of-birth").val();
+        return !(name.length < 1 || surname.length < 1 || password.length < 1 || dateOfBirth.length < 1);
+    }
+
+
+/*bitno za toa prozorceto so rez*/
+    $(document).ready(function () {
+        $(".if-not-valid").hide();
+
+        $("#date-of-birth").datepicker();
+
+        $("#selectable-list").selectable({
+            stop: function () {
+                var result = $("#hobbiesHere").empty();
+                $(".ui-selected").each(function () {
+                    result.append($(this).html() + ",");
+                });
+            }
+        });
+
+/*bez voa ne se zacuvuvat u rez*/
+        $("#input-boxes").find("#name").on("change", function () {
+            var result = $("#nameHere").empty();
+            var value = $(this).val();
+            result.append(value);
+        });
+
+        $("#input-boxes").find("#surname").on("change", function () {
+            var result = $("#surnameHere").empty();
+            var value = $(this).val();
+            result.append(value);
+        });
+
+        $("#input-boxes").find("#password").on("change", function () {
+            var result = $("#passwordHere").empty();
+            var value = $(this).val();
+            result.append(value);
+        });
+
+        $("#input-boxes").find("#date-of-birth").on("change", function () {
+            var result = $("#date-of-birth-here").empty();
+            var value = $(this).val();
+            result.append(value);
+        });
+/*najbitno,nis ne rab ako go nema*/
+        $("#add-info").on("click", function () {
+            if (validateInputs()) {
+                $(".if-not-valid").hide();
+                $("#input-boxes").find("input").removeClass("not-valid-input");
+                var value = $("#hobbiesHere").html();
+                var result = $("#hobbiesHere").empty();
+                result.append(value.toString().substr(0, value.length - 1));
+                $("#dialog").dialog("open");
+                clearInputs();
+            } else {
+                $(".if-not-valid").show();
+                $("#input-boxes").find("input").addClass("not-valid-input");
+            }
+        });
+    });
+</script>
+</body>
+</html>

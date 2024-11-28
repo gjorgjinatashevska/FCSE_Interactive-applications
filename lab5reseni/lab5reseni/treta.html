@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>treta</title>
+  <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"/>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+</head>
+<body>
+
+<!--fill lenta-->
+<label for="text">New Item:</label><br>
+<input id="text" type="text">
+
+<br><br>
+<!--/*kopcinja*/-->
+<input id="add" type="button" value="Add new Item"> <input id="delete" type="button" value="Delete Selected Items">
+
+<br><br>
+
+<span class="selected-items">Selected Items</span>&nbsp;<span id="items-here" class="selected-items"></span>
+
+<br><br>
+<!--list-->
+<ul id="selectable-list">
+  <li class="item ui-widget-content">item 1</li>
+  <li class="item ui-widget-content">item 2</li>
+  <li class="item ui-widget-content">item 3</li>
+  <li class="item ui-widget-content">Item 4</li>
+  <li class="item ui-widget-content">Item 5</li>
+</ul>
+
+<style type="text/css">
+ul{padding-left: 0px;padding-top: 1px;}
+
+  label {
+    display: inline-block;
+    margin-bottom: 10px;
+  }
+
+  .selected-items {
+    border-top: 2px solid black;
+    border-bottom: 1px solid black;
+    background-color: #2fc22f;
+  }
+
+  #selectable-list  {
+    background: #67f090;
+  }
+
+  .item { /*za item 1,2,3...*/
+    padding: 5px;
+    margin: 2px;
+    border: 3px solid #08f602;
+    width: 249px;
+  }
+</style>
+
+
+<script type="text/javascript">
+ /*za add new item*/
+  $(document).ready(function () {
+
+    $("#selectable-list").selectable({
+      stop: function () {
+        var result = $("#items-here").empty();
+        $(".ui-selected").each(function () {
+          result.append($(this).html() + " ");
+        });
+      }
+    });
+
+    $("#add").on("click", function () {
+      var value = $("#text").val();
+      $("#text").val("");
+      if (value.length > 0)
+        $("#selectable-list").append('<li class="item ui-widget-content">' + value + '</li>');
+    });
+
+    $("#delete").on("click", function () {
+      $("#selectable-list").find(".ui-selected").hide();
+      $("#items-here").empty();
+    });
+  });
+</script>
+
+</body>
+</html>
